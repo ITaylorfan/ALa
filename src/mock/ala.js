@@ -1,0 +1,12 @@
+module.exports={
+    "error_code":0,
+    "msg":"获取成功",
+    "data":[
+        {
+            "id":1,
+            "title":"抗疫:本小区实行全面封锁",
+            "content":"新冠肺炎疫情，在一段时间的好转后，似乎出现死灰复燃的现象",
+            "imageUrl":`${process.env.VUE_APP_RES_URL}/Ala/ala1.jpg`,
+        }
+    ]
+}

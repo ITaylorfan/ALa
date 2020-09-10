@@ -1,0 +1,35 @@
+/*适配方法*/
+$ratio: 375/10;
+@function px2rem($px){
+    @return $px / $ratio+rem;
+}
+
+//标题颜色
+$titleColor:#6A9DF9;
+
+//flex布局居中
+@mixin  center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+//flex 右居中
+@mixin  right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+//flex 左居中
+@mixin left {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;  //设置交叉轴居中对齐后 可能出现div占不满高度的情况
+}
+
+//flex 垂直排列 居中
+@mixin  columnCenter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
