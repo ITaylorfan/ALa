@@ -5,10 +5,11 @@ import { mapActions,mapGetters} from "vuex";
 export const Ala={
     //变量
     computed: {
-        ...mapGetters(["isPropertyManager"])
+        ...mapGetters(["isPropertyManager","isLogin","isWY","isJW","isYW","isZH","status","name","detailUserInfo","infoInput"])
     },
     //方法
     methods: {
-        ...mapActions(["setIsPropertyManager"])
+        ...mapActions(["setIsPropertyManager","setIsLogin","setIsWY","setIsJW","setIsYW",
+        "setIsZH","setStatus","setName","setDetailUserInfo","setInfoInput"])
     },
 }

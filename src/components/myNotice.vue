@@ -1,10 +1,6 @@
 <template>
-    <div class="wrapper">
-        
-        <title-menu :title="title"></title-menu>
-        
-
-    <div v-if="isHide">
+  <div class="notice-wrapper">
+      <div v-if="isHide">
       <search-bar></search-bar>
       <ul>
           <li class="top">
@@ -55,80 +51,87 @@
      
       </div>
 
-    <nav-menu></nav-menu>
-
-     <router-view></router-view>
-    </div>
+       <router-view></router-view>
+  </div>
 </template>
 
 <script>
-import TitleMenu from "../components/TitleMenu"
-import NavMenu from "../components/NavMenu"
-import searchBar from "../components/searchBar"
+import SearchBar from "../components/searchBar"
 export default {
-    components:{
-        TitleMenu,
-        NavMenu,
-        searchBar
-    },
-    data() {
-        return {
-            title:"首页",
-             dataList:[],
+  data() {
+    return {
+      dataList:[],
       imgUrl:require("@/assets/images/noticeTitle.png"),
       current:"all"
-        }
-    },
-    methods: {
-    //跳转文章详情页
-      goDetail(id){
-          this.$router.push({
-              name:"HomeDetailNotice",
-              query:{
-                  id
-              }
-          })
+    };
+  },
+  computed: {
+      isSelect(){
+
       },
-    },
-    computed: {
-         isHide(){
-          if(this.$route.name==="HomeDetailNotice"){
+      isHide(){
+          if(this.$route.name==="detailNotice"){
               return false
           }else{
               return true
           }
       }
-    },
-    mounted() {
-           this.$axios.get(`${process.env.VUE_APP_BASE_URL}/Ala/info`).then(result=>{
+  },
+  methods: {
+      //跳转文章详情页
+      goDetail(id){
+          this.$router.push({
+              name:"detailNotice",
+              query:{
+                  id
+              }
+          })
+      },
+      changeNotice(id){
+          switch(id){
+                case 1:
+                  this.current="all"
+                  break;
+                case 2:
+                  this.current="bulletin"
+                  break;
+                case 3:
+                  this.current="myNotice"
+                  break;
+          }
+      }
+      
+  },
+  components:{
+      SearchBar
+  },
+  //获取数据
+  mounted() {
+      this.$axios.get(`${process.env.VUE_APP_BASE_URL}/Ala/info`).then(result=>{
           //console.log(result)
           this.dataList=result.data.data
       },error=>{
 
       })
-    },
-}
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-    @import "../assets/styles/global";
-.wrapper {
+@import "../assets/styles/global";
+.notice-wrapper {
   position: absolute;
   width: 100%;
   height: 100%;
   left: 0;
-  top:0;
+  top: px2rem(48);
   background-color: #ececec;
-  overflow: hidden;
   overflow-y: auto;
-  padding-top: px2rem(86);
-//   padding-bottom: px2rem(200);
-
-
+  
   ul{
     width: 100%;
     height: auto;
-    
+    padding-top: px2rem(45);
     padding-bottom: px2rem(150);
     
       li{
@@ -254,5 +257,3 @@ export default {
   
 }
 </style>
-
-

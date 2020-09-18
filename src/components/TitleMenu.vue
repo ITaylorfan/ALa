@@ -32,9 +32,7 @@ export default {
         }
     },
     mounted() {
-        //测试vuex的使用
-        // this.setIsPropertyManager(true)
-        // console.log(this.isPropertyManager)
+     
     },
     methods: {
 
@@ -68,11 +66,12 @@ export default {
         width: 100%;
         height: px2rem(48);
         background-color: $titleColor;
-        position: absolute;
+        position: fixed;
         top: 0;
         left: 0;
         color: white;
         display: flex;
+        z-index: 1000;
         .left{
             flex: 1;
             @include left;

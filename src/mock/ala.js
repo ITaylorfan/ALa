@@ -6,7 +6,52 @@ module.exports={
             "id":1,
             "title":"抗疫:本小区实行全面封锁",
             "content":"新冠肺炎疫情，在一段时间的好转后，似乎出现死灰复燃的现象",
-            "imageUrl":`${process.env.VUE_APP_RES_URL}/Ala/ala1.jpg`,
-        }
+            "imageUrl":[
+               {
+                   image:`${process.env.VUE_APP_RES_URL}/Ala/ala1.jpg`
+               },
+               {
+                   image:`${process.env.VUE_APP_RES_URL}/Ala/hailaer.jpg`
+               }
+            ],
+            "type":"公告",
+            "status":"物业",
+            "date":"2020-09-14",
+            "time":"21:11:33"
+        },
+        {
+            "id":2,
+            "title":"抗疫:本小区实行全面封锁",
+            "content":" 因黑龙江地区疫情加重，与黑龙江接壤的，呼伦贝尔等地，近来也发布了通告。 2020年4月18日起，要求，途径黑龙江地区的群众，主动申报，并配合隔离。关闭，人群聚集性场所，所有小区“重启进出管制”携出入卡，登记出入人信息等。 此前，在疫情高发期，呼伦贝尔多地城市，曾采取，进出管制措施。 在疫情大体控制住后，进出管制措施，逐渐被取消，现在因，输入性病例增多，无症状携带者增多，所以又“重新采取了措施”。人群聚集性场所，所有小区“重启进出管制”携出入卡，登记出入人信息等",
+            "imageUrl":[
+                {
+                    image:`${process.env.VUE_APP_RES_URL}/Ala/zzcc.jpg`
+                },
+                {
+                    image:`${process.env.VUE_APP_RES_URL}/Ala/hailaer.jpg`
+                }
+             ],
+            "type":"公告",
+            "status":"物业",
+            "date":"2020-10-24",
+            "time":"23:11:33"
+        },
+        {
+            "id":3,
+            "title":"抗疫:本小区实行全面封锁",
+            "content":"新冠肺炎疫情，在一段时间的好转后，似乎出现死灰复燃的现象",
+            "imageUrl":[
+                {
+                    image:`${process.env.VUE_APP_RES_URL}/Ala/ala1.jpg`
+                },
+                {
+                    image:`${process.env.VUE_APP_RES_URL}/Ala/zzcc.jpg`
+                }
+             ],
+            "type":"公告",
+            "status":"物业",
+            "date":"2020-11-25",
+            "time":"22:22:33"
+        },
     ]
 }

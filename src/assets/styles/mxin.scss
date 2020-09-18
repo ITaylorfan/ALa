@@ -5,7 +5,7 @@ $ratio: 375/10;
 }
 
 //标题颜色
-$titleColor:#6A9DF9;
+$titleColor:#12B4FF;
 
 //flex布局居中
 @mixin  center {
@@ -32,4 +32,19 @@ $titleColor:#6A9DF9;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+//flex 垂直排列 居左
+@mixin  columnLeft {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+//flex 垂直排列 居左 居上
+@mixin  columnTopLeft {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
 }

@@ -1,0 +1,35 @@
+module.exports={
+    "error_code":0,
+    "msg":"获取成功",
+    "data":[
+        {
+            "id":1,
+            "name":"胡歌",
+            "status":"物业经理",
+            "account":"wy123",
+            "password":"123456"   
+        },
+        {
+            "id":2,
+            "name":"易小川",
+            "status":"业委",
+            "account":"yw123",
+            "password":"123456"  
+        },
+        {
+            
+            "id":3,
+            "name":"景天",
+            "status":"居委",
+            "account":"jw123",
+            "password":"123456"  
+        },
+        {
+            "id":4,
+            "name":"飞蓬",
+            "status":"住户",
+            "account":"zh123",
+            "password":"123456"  
+        }
+    ]
+}

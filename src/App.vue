@@ -1,14 +1,30 @@
 <template>
   <div id="app">
-   
-    <router-view />
+   <router-view> </router-view>
   </div>
 </template>
 
 
 <script>
 export default {
-  
+  provide (){
+     return {
+       reload:this.reload
+     }
+  },
+   data(){
+    return {
+       isRouterAlive:true
+    }
+  },
+   methods:{
+    reload (){
+       this.isRouterAlive = false
+       this.$nextTick(function(){
+          this.isRouterAlive = true
+       })
+    }
+  },
 }
 // 设置rem适配 fontSize基准值
 document.addEventListener("DOMContentLoaded",()=>{
@@ -27,6 +43,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   width:100%;
   height: 100%;
   overflow: hidden;
-  background-color: aquamarine;
+  position: absolute;
+  // background-color: aquamarine;
 }
 </style>
