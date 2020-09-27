@@ -9,7 +9,7 @@
                 <span>我的通知</span>
             </div>
         </div>
-        <div class="wrapper" :class="{active:name==='Menu'||name==='InfoInput'}" @click="goFunMenu" v-else>
+        <div class="wrapper" :class="{active:name==='Menu'||name==='InfoInput'||isChild}" @click="goFunMenu" v-else>
             <div class="icon">
            <van-icon name="apps-o" />
              </div>
@@ -61,6 +61,14 @@ export default {
         name(){
             return this.$route.name
         },
+        //判断是否是智慧物业下的路径
+        isChild(){
+            if(this.$route.path.indexOf("Menu")!==-1){
+                return true
+            }else{
+                return false
+            }
+        }
       
     },
 }
@@ -69,7 +77,7 @@ export default {
 <style lang="scss" scoped>
     @import "../assets/styles/global";
     .fau-wrapper{
-        z-index: 1000;
+        z-index: 2;
         width: 100%;
         height: px2rem(50px);
         position: absolute;
@@ -77,6 +85,7 @@ export default {
         background-color: white;
         left: 0;
         display: flex;
+         border-top: 1px solid rgb(219, 219, 219);
         .wrapper:first-child{
             border-right: 1px solid rgb(119, 119, 119);
         }

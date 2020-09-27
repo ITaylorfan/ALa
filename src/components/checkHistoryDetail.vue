@@ -46,32 +46,24 @@
 </template>
 
 <script>
+import {Ala} from "../utils/mixin"
 export default {
+  mixins:[Ala],
   data() {
     return {
-      imgUrl: require("@/assets/images/noticeTitle.png"),
+      
       data:{}    //这里不要设置为null
     };
   },
   methods: {
 
   },
-  // beforeMount() {
-  //   console.log(this)
-  //    this.$axios.get(`${process.env.VUE_APP_BASE_URL}/Ala/info`).then(result=>{
-         
-  //         let dataList=[]
-  //         dataList=result.data.data
-  //         this.data=dataList[this.$route.query.id-1]
-  //         console.log(this.data)
-  //     },error=>{
 
-  //     })
-  // },
   mounted(){
-    //console.log(this.$route.params.data)
+  
     //获取父组件传过来的数据
     this.data=this.$route.params.data
+    //this.resetScrollBar()
   }
 };
 </script>
@@ -85,7 +77,7 @@ export default {
   width: 100%;
   height: 100%;
   left: 0;
-  top: px2rem(48);
+  top: 0;
   background-color: white;
   padding-bottom: px2rem(120);
   padding-top: px2rem(10);

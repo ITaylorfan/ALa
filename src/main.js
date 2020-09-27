@@ -17,8 +17,10 @@ import { Form } from 'vant';
 import { Popup } from 'vant';
 import { Picker } from 'vant';
 import { Uploader } from 'vant';
-
-
+import { Switch } from 'vant';
+import { Checkbox, CheckboxGroup } from 'vant';
+import { Tabbar, TabbarItem } from 'vant';
+import { ShareSheet } from 'vant';
 
 
 
@@ -35,7 +37,12 @@ Vue.use(Form);
 Vue.use(Popup);
 Vue.use(Picker);
 Vue.use(Uploader);
-
+Vue.use(Switch);
+Vue.use(Checkbox);
+Vue.use(CheckboxGroup);
+Vue.use(Tabbar);
+Vue.use(TabbarItem);
+Vue.use(ShareSheet);
 //在原型加入axios
 Vue.prototype.$axios = axios
 //在原型中加入Toast

@@ -25,6 +25,12 @@ $titleColor:#12B4FF;
     justify-content: flex-start;
     align-items: center;  //设置交叉轴居中对齐后 可能出现div占不满高度的情况
 }
+//flex 居上
+@mixin top {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;  //设置交叉轴居中对齐后 可能出现div占不满高度的情况
+}
 
 //flex 垂直排列 居中
 @mixin  columnCenter {

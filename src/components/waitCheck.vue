@@ -20,13 +20,13 @@
         <ul>
             <li class="content" v-for="(item,index) in dataList" :key="index"  v-show="current=='all'">
             
-              <div class="title" @click="goDetail">
+              <div class="title" @click="goDetail(index)">
                   <span>{{item.title}}</span>
               </div>
-              <div class="ellipsis" @click="goDetail">
+              <div class="ellipsis" @click="goDetail(index)">
                   <span>{{item.content}}</span>
               </div>
-              <div class="image" @click="goDetail">
+              <div class="image" @click="goDetail(index)">
                   <img :src="item.imageUrl[0].image" alt="图片获取失败">
               </div>
               <div class="bottomBar">
@@ -67,7 +67,7 @@
         </ul>
     </div>
 
-    <router-view></router-view>
+    <router-view @childToFather="FatherGet" @successCheck="successCheck"></router-view>
   </div>
 </template>
 
@@ -77,6 +77,7 @@ import { Ala } from "../utils/mixin";
 import TitleMenu from "../components/TitleMenu";
 import NavMenu from "../components/NavMenu";
 import SearchBar from "../components/searchBar";
+
 export default {
   mixins:[Ala],
   data() {
@@ -91,47 +92,108 @@ export default {
       dataToChild:{}
     };
   },
-   watch: {
-        // uploader(v){
-        //     console.log(v)
-        // }
-    },
+ 
   components: {
     TitleMenu,
     NavMenu,
     SearchBar
   },
   methods: {
-      goDetail(){
-
+      //完成检查删除待审查中的数据
+      successCheck(v){
+        //接收id 删除
+        this.dataList.forEach((item,index)=>{
+            if(item.id===v){
+                 this.dataList.splice(index,1)
+                 this.setWaitCheck(this.dataList) 
+            }
+        }) 
+      },
+      //子组件调用该方法 更新数据
+      FatherGet(v){
+        this.dataList.forEach((item,index)=>{
+            if(item.id===v.id){
+                this.dataList.splice(index,1,v)
+                this.setWaitCheck(this.dataList) 
+            }
+        })
+      },
+      goDetail(index){
+          
+            this.$router.push({
+              name:"WaitCheckDetail",
+              params:{
+                  data:this.dataList[index]
+              }
+            })
+          //滚动条归位
+          //this.resetScrollBar()
       },
       edit(index){
           
           this.dataToChild=this.dataList[index]
-           console.log(this.dataToChild)
+           //console.log(this.dataToChild)
           this.$router.push({
               name:"InfoEdit",
               params:this.dataToChild
           })
       },
       check(index){
-          console.log(index)
+          this.dataToChild=this.dataList[index]
+        
+          this.$router.push({
+              name:"Check",
+              params:this.dataToChild       
+          })
       }
     
   },
   mounted() {
-      //获取
+    
+     if(this.isFirst){
+          //获取
           this.$axios.get(`${process.env.VUE_APP_BASE_URL}/Ala/info`).then(result=>{
           //console.log(result)
-          this.dataList=result.data.data
-      },error=>{
+          
+          this.setWaitCheck(result.data.data)
+          this.dataList=this.waitCheck
 
-      })
+          //设置是否为第一次执行
+          this.setIsFirst(false)
+          
+          },error=>{
+
+          })
+     }
+     //从vuex中取值
+     this.dataList=this.waitCheck
+     
   },
+  updated(){
+      //console.log(this.$route)
+    //   if(this.editInfo.length!==0){
+    //       console.log("hhh")
+    //     this.dataList.forEach((item,index)=>{
+    //       if(item.id===this.editInfo[0].id){
+             
+    //            //this.dataList.splice(index,1,this.editInfo[0])
+    //            console.log("aaa")
+    //            console.log(this.dataList)
+               
+    //       }
+    //   })
+    //   } 
+  },
+  //路由守卫
+//   beforeRouteEnter (to, from, next) {
+//       console.log(to)
+//       next()
+//   },
+  
   computed: {
       isChild(){
             
-            if(this.$route.name==="InfoEdit"||this.$route.name===""){
+            if(this.$route.name==="InfoEdit"||this.$route.name==="Check"||this.$route.name==="WaitCheckDetail"){
                 return false
             }else{
                 return true
@@ -194,7 +256,7 @@ export default {
     height: auto;
     padding-top: px2rem(45);
     padding-bottom: px2rem(150);
-  
+   
       li{
           margin-top: px2rem(10);
           width: 100%;

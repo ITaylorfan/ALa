@@ -1,6 +1,6 @@
 <template>
   <div class="nav-wrapper">
-    <div class="wrapper" @click="goNews" :class="{active: name==='home'}">
+    <div class="wrapper" @click="goNews" :class="{active:isHome}">
       <div class="icon">
         <van-icon name="comment-o" />
       </div>
@@ -8,7 +8,7 @@
         <span>最新发布</span>
       </div>
     </div>
-    <div class="wrapper" :class="{active:name==='service'}">
+    <div class="wrapper" :class="{active:name==='service'}" @click="goLifeService">
       <div class="icon">
         <van-icon name="shop-collect-o" />
       </div>
@@ -37,6 +37,14 @@ export default {
     name() {
       return this.$route.name;
     },
+    isHome(){
+       if (this.$route.path.indexOf("home") !== -1 ) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    //判断路由下是否有mycommunity路径
     isCommunity() {
       if (
         this.$route.path.indexOf("mycommunity") !== -1 ||
@@ -53,6 +61,10 @@ export default {
   },
   mounted() {},
   methods: {
+    //生活服务暂无
+    goLifeService(){
+      this.$Toast.fail('暂未开放');
+    },
     goMyCommunity() {
       let currentStatus;
       if (this.isLogin) {
@@ -61,23 +73,24 @@ export default {
         if (
           this.$route.name !== "mycommunity" &&
           this.$route.name !== "Menu" &&
-          this.$route.name !== "UserInfo"
+          this.$route.name !== "UserInfo"&&
+          this.$route.name !== "myNotice"
         ) {
           if (this.isZH) {
             this.$router.push({
-              path: "/mycommunity/" + currentStatus + "/myNotice"
+              path: "/mycommunity/myNotice"
             });
           } else {
             this.$router.push({
-              path: "/mycommunity/" + currentStatus + "/Menu"
+              path: "/mycommunity/Menu"
             });
           }
         }
       } else {
         //跳转
-        currentStatus = "未登录";
+      
         this.$router.push({
-          path: "/mycommunity/" + currentStatus
+          path: "/mycommunity/"
         });
       }
       
@@ -107,6 +120,7 @@ export default {
   z-index: 1000;
   .wrapper {
     // padding: 5px 0;
+    height: px2rem(50);
     flex: 1;
     color: white;
     @include columnCenter;
@@ -119,6 +133,8 @@ export default {
 
     &.active {
       background-color: #1279c8;
+      //此处解决一个小bug 点击之后的背景 高度变小
+      height: px2rem(50);
     }
   }
 }

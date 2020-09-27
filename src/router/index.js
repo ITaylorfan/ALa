@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-import Home from "../views/Home";
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -22,7 +22,7 @@ const routes = [
     ]
   },
   {
-    path:"/mycommunity/:id",
+    path:"/mycommunity",
     name:"mycommunity",
     component:()=>import("../views/MyCommunity"),
     children:[
@@ -34,7 +34,14 @@ const routes = [
           {
             path:"InfoInput",
             name:"InfoInput",
-            component:()=>import("../components/infoInput")
+            component:()=>import("../components/infoInput"),
+            children:[
+              {
+                path:"ChoiceUser",
+                name:"ChoiceUser",
+                component:()=>import("../components/choiceUser")
+              }
+            ]
           },
           {
             path:"WaitCheck",
@@ -45,8 +52,79 @@ const routes = [
                 path:"InfoEdit",
                 name:"InfoEdit",
                 component:()=>import("../components/infoInput")
+              },
+              {
+                path:"Check",
+                name:"Check",
+                component:()=>import("../components/check")
+              },
+              {
+                path:"WaitCheckDetail",
+                name:"WaitCheckDetail",
+                component:()=>import("../components/checkHistoryDetail")
               }
             
+            ]
+          },
+          {
+            path:"CheckHistory",
+            name:"CheckHistory",
+            component:()=>import("../components/checkHistory"),
+            children:[
+              {
+                path:"HistoryDetail",
+                name:"HistoryDetail",
+                component:()=>import("../components/checkHistoryDetail")
+              }
+            ]
+          },
+          {
+            path:"MyUpload",
+            name:"MyUpload",
+            component:()=>import("../components/myUpload"),
+            children:[
+              {
+                path:"MyUploadDetail",
+                name:"MyUploadDetail",
+                component:()=>import("../components/checkHistoryDetail")
+              }
+            ]
+          },
+          {
+            path:"AccountManagement",
+            name:"AccountManagement",
+            component:()=>import("../components/accountManagement"),
+            children:[
+              {
+                path:"Authority",
+                name:"Authority",
+                component:()=>import("../components/authority")
+              }
+            ]
+          },
+          {
+            path:"AccountCheck",
+            name:"AccountCheck",
+            component:()=>import("../components/accountManagement")
+          },
+          {
+            path:"CheckNotice",
+            name:"CheckNotice",
+            component:()=>import("../components/checkNotice"),
+            children:
+            [
+              {
+                path:"CheckChoiceUser",
+                name:"CheckChoiceUser",
+                component:()=>import("../components/choiceUser"),
+                children:[
+                  {
+                    path:"AddUser",
+                    name:"AddUser",
+                    component:()=>import("../components/addUser")
+                  }
+                ]
+              }
             ]
           }
         ]

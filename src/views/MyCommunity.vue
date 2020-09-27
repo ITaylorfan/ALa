@@ -136,7 +136,7 @@ export default {
         padding: px2rem(50) 0 px2rem(50) 0;
         width: 100%;
         height: 100%;
-        background-color: #ECECEC;
+        background-color: #ffffff;
         box-sizing: border-box;
         .content-wrapper{
             display: flex;
@@ -145,7 +145,7 @@ export default {
                 width: 100%;
                 height: px2rem(60);
                 padding-left: px2rem(10);
-                border-bottom: 1px solid white;
+                border-bottom: 1px solid rgb(155, 154, 154);
                 display: flex;
                 @include left;
                 .avater{

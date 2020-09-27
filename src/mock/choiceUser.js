@@ -1,0 +1,43 @@
+module.exports={
+    "error_code":0,
+    "msg":"获取成功",
+    "data":[
+        {
+            "id":1,
+            "avater":`${process.env.VUE_APP_RES_URL}/Ala/胡歌.jpg`,
+            "name":"胡歌",
+            "status":"客服",
+            "community":"阳光小区",
+            "position":"1路1弄1室1号",
+            "isChoice":false
+        },
+        {
+            "id":2,
+            "avater":`${process.env.VUE_APP_RES_URL}/Ala/易小川.jpg`,
+            "name":"易小川",
+            "status":"保安",
+            "community":"阳光小区",
+            "position":"1路2弄2室2号",
+            "isChoice":false
+        },
+        {
+            "id":3,
+            "avater":`${process.env.VUE_APP_RES_URL}/Ala/景天.jpg`,
+            "name":"景天",
+            "status":"维修",
+            "community":"阳光小区",
+            "position":"3路3弄3室3号",
+            "isChoice":false
+        },
+        {
+            "id":4,
+            "avater":`${process.env.VUE_APP_RES_URL}/Ala/飞蓬.jpg`,
+            "name":"飞蓬",
+            "status":"物业管理员",
+            "community":"阳光小区",
+            "position":"4路4弄4室4号",
+            "isChoice":false
+        },
+      
+    ]
+}

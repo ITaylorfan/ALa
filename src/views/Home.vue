@@ -23,7 +23,7 @@
                  </div>
               </div>
           </li>
-          <li class="content" v-for="(item,index) in dataList" :key="index" @click="goDetail(item.id)" v-show="current=='all'">
+          <li class="content" v-for="(item,index) in dataList" :key="index" @click="goDetail(index)" v-show="current=='all'">
               <div class="title">
                   <span>{{item.title}}</span>
               </div>
@@ -65,7 +65,9 @@
 import TitleMenu from "../components/TitleMenu"
 import NavMenu from "../components/NavMenu"
 import searchBar from "../components/searchBar"
+import {Ala} from "../utils/mixin"
 export default {
+    mixins:[Ala],
     components:{
         TitleMenu,
         NavMenu,
@@ -82,13 +84,30 @@ export default {
     methods: {
     //跳转文章详情页
       goDetail(id){
+         
           this.$router.push({
               name:"HomeDetailNotice",
-              query:{
-                  id
+              params:{
+                  data:this.dataList[id]
               }
           })
+          //滚动条归位
+          this.resetScrollBar()
       },
+
+         changeNotice(id){
+          switch(id){
+                case 1:
+                  this.current="all"
+                  break;
+                case 2:
+                  this.current="bulletin"
+                  break;
+                case 3:
+                  this.current="myNotice"
+                  break;
+          }
+      }
     },
     computed: {
          isHide(){
@@ -100,9 +119,23 @@ export default {
       }
     },
     mounted() {
-           this.$axios.get(`${process.env.VUE_APP_BASE_URL}/Ala/info`).then(result=>{
-          //console.log(result)
+        
+    
+    this.$axios.get(`${process.env.VUE_APP_BASE_URL}/Ala/info`).then(result=>{
+          //mock里的假数据
           this.dataList=result.data.data
+        
+          //获取信息输入的数据并打印
+          for(var i in this.infoInput){
+            this.dataList.unshift(this.infoInput[i])
+         
+          }
+          //获取已通过的数据并打印
+          for(var i in this.passInfo){
+              this.dataList.unshift(this.passInfo[i])
+          }
+          
+         
       },error=>{
 
       })

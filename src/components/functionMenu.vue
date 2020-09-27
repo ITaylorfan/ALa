@@ -3,19 +3,19 @@
     <div class="function-wrapper">
        
         <ul v-if="isChild">
-            <li class="accout-mannager" v-show="this.isWY">
+            <li class="accout-mannager" @click="AccountManagement" v-show="this.isWY">
                 <div class="icon"><van-icon name="manager-o" /></div>
                 <div class="title">账号管理</div>    
             </li>
-            <li class="shenhe" v-show="this.isWY">
+            <li class="shenhe" @click="accountCheck" v-show="this.isWY">
                 <div class="icon"><van-icon name="completed" /></div>
                 <div class="title">认证审核</div>   
             </li>
-            <li class="wait" @click="waitCheck">
+            <li class="wait" @click="WaitCheck">
                 <div class="icon"><van-icon name="description" /></div>
                 <div class="title">待审查</div>  
             </li>
-            <li class="history">
+            <li class="history" @click="CheckHistory">
                 <div class="icon"><van-icon name="clock-o" /></div>
                 <div class="title">审查历史</div>  
             </li>
@@ -23,11 +23,11 @@
                  <div class="icon"><van-icon name="records" /></div>
                 <div class="title">信息录入</div> 
             </li>
-            <li class="mine">
+            <li class="mine" @click="MyUpload">
                  <div class="icon"><van-icon name="back-top" /></div>
                 <div class="title">我的发布</div> 
             </li>
-            <li class="notice" v-show="this.isWY">
+            <li class="notice" @click="CheckNotice" v-show="this.isWY">
                  <div class="icon"><van-icon name="bullhorn-o" /></div>
                 <div class="title">巡检告知</div> 
             </li>
@@ -47,11 +47,37 @@ export default {
                 name:"InfoInput"
             })
         },
-        waitCheck(){
+        WaitCheck(){
              this.$router.push({
                 name:"WaitCheck"
             })
+        },
+        CheckHistory(){
+              this.$router.push({
+                name:"CheckHistory"
+            })
+        },
+        MyUpload(){
+               this.$router.push({
+                name:"MyUpload"
+            })
+        },
+        AccountManagement(){
+                this.$router.push({
+                name:"AccountManagement"
+            })
+        },
+        accountCheck(){
+            this.$router.push({
+                name:"AccountCheck"
+            })
+        },
+        CheckNotice(){
+              this.$router.push({
+                name:"CheckNotice"
+            })
         }
+
     },
     mounted() {
         // console.log(this.isWY)
@@ -59,7 +85,12 @@ export default {
     },
     computed: {
         isChild(){
-            if(this.$route.name==="InfoInput"||this.$route.name==="WaitCheck"){
+            if(this.$route.name==="InfoInput"||this.$route.name==="WaitCheck"||
+            this.$route.name==="CheckHistory"||this.$route.name==="MyUpload"||
+            this.$route.name==="AccountManagement"||this.$route.name==="Authority"||
+            this.$route.name==="AccountCheck"||this.$route.name==="CheckNotice"||
+            this.$route.name==="ChoiceUser"|| this.$route.name==="CheckChoiceUser"||
+            this.$route.name==="AddUser"){
                 return false
             }else{
                 return true

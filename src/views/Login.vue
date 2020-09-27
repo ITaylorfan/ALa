@@ -110,7 +110,7 @@ export default {
                     this.$Toast.success('登录成功');
                     //然后重新跳转 回我的社区页面
                     this.$router.push({
-                        path:"/mycommunity/"+this.status+"/UserInfo",
+                        path:"/mycommunity/UserInfo",
                     })
                    
                 }else{

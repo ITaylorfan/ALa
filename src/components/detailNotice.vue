@@ -57,13 +57,13 @@ export default {
 
   },
   beforeMount() {
-    console.log(this)
+   
      this.$axios.get(`${process.env.VUE_APP_BASE_URL}/Ala/info`).then(result=>{
          
           let dataList=[]
           dataList=result.data.data
           this.data=dataList[this.$route.query.id-1]
-          console.log(this.data)
+         
       },error=>{
 
       })

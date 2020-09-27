@@ -8,7 +8,16 @@ const getters={
     status:state=>state.Ala.status,
     name:state=>state.Ala.name,
     detailUserInfo:state=>state.Ala.detailUserInfo,
-    infoInput:state=>state.Ala.infoInput
+    infoInput:state=>state.Ala.infoInput,
+    passInfo:state=>state.Ala.passInfo,
+    editInfo:state=>state.Ala.editInfo,
+    noPassInfo:state=>state.Ala.noPassInfo,
+    checkHistory:state=>state.Ala.checkHistory,
+    isFirst:state=>state.Ala.isFirst,
+    waitCheck:state=>state.Ala.waitCheck,
+    checkHistoryIsFirst:state=>state.Ala.checkHistoryIsFirst,
+    myUpload:state=>state.Ala.myUpload,
+    myUploadIsFirst:state=>state.Ala.myUploadIsFirst
 }
 
 export default getters
